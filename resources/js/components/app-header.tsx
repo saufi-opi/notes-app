@@ -1,51 +1,51 @@
-import { Breadcrumbs } from '@/components/breadcrumbs';
-import { Icon } from '@/components/icon';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { NavigationMenu, NavigationMenuItem, NavigationMenuList, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { UserMenuContent } from '@/components/user-menu-content';
-import { useInitials } from '@/hooks/use-initials';
-import { cn } from '@/lib/utils';
-import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
-import { Link, usePage } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-react';
-import AppLogo from './app-logo';
-import AppLogoIcon from './app-logo-icon';
+import { Breadcrumbs } from '@/components/breadcrumbs'
+import { Icon } from '@/components/icon'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { UserMenuContent } from '@/components/user-menu-content'
+import { useInitials } from '@/hooks/use-initials'
+import { cn } from '@/lib/utils'
+import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types'
+import { Link, usePage } from '@inertiajs/react'
+import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-react'
+import AppLogo from './app-logo'
+import AppLogoIcon from './app-logo-icon'
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
-        url: '/dashboard',
-        icon: LayoutGrid,
-    },
-];
+        title: 'notes',
+        url: '/notes',
+        icon: LayoutGrid
+    }
+]
 
 const rightNavItems: NavItem[] = [
     {
         title: 'Repository',
         url: 'https://github.com/laravel/react-starter-kit',
-        icon: Folder,
+        icon: Folder
     },
     {
         title: 'Documentation',
         url: 'https://laravel.com/docs/starter-kits',
-        icon: BookOpen,
-    },
-];
+        icon: BookOpen
+    }
+]
 
-const activeItemStyles = 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
+const activeItemStyles = 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100'
 
 interface AppHeaderProps {
-    breadcrumbs?: BreadcrumbItem[];
+    breadcrumbs?: BreadcrumbItem[]
 }
 
 export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
-    const page = usePage<SharedData>();
-    const { auth } = page.props;
-    const getInitials = useInitials();
+    const page = usePage<SharedData>()
+    const { auth } = page.props
+    const getInitials = useInitials()
     return (
         <>
             <div className="border-sidebar-border/80 border-b">
@@ -94,7 +94,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                         </Sheet>
                     </div>
 
-                    <Link href="/dashboard" prefetch className="flex items-center space-x-2">
+                    <Link href="/notes" prefetch className="flex items-center space-x-2">
                         <AppLogo />
                     </Link>
 
@@ -109,7 +109,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                             className={cn(
                                                 navigationMenuTriggerStyle(),
                                                 page.url === item.url && activeItemStyles,
-                                                'h-9 cursor-pointer px-3',
+                                                'h-9 cursor-pointer px-3'
                                             )}
                                         >
                                             {item.icon && <Icon iconNode={item.icon} className="mr-2 h-4 w-4" />}
@@ -178,5 +178,5 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                 </div>
             )}
         </>
-    );
+    )
 }
